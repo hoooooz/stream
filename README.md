@@ -41,7 +41,7 @@ stream_read_cfg_t s_tStreamReadCfg = {
 };
 
 stream_read_init(&g_tStreamRead, &s_tStreamReadCfg);
-``` 
+```
 
 ### 读取数据
 
@@ -61,9 +61,9 @@ if (stream_read(&g_tStreamRead, &chByte)) {
 
 需要在相应的中断服务程序中调用以下事件处理函数:
 
-#### DMA传输完成中断
+#### DMA接收半满完成中断
 
-当DMA缓冲区满时调用: [7](#1-6) 
+当DMA缓冲区半满时调用: 
 
 ```c
 void DMA1_Channel5_IRQHandler(void) {
@@ -72,7 +72,7 @@ void DMA1_Channel5_IRQHandler(void) {
         uart_dma_get_data_insert_to_dma_irq_event_handler(&g_tStreamRead);
     }
 }
-``` 
+```
 
 #### UART空闲中断
 
@@ -129,7 +129,7 @@ stream_write_cfg_t s_tStreamWriteCfg = {
 };
 
 stream_write_init(&g_tStreamWrite, &s_tStreamWriteCfg);
-``` 
+```
 
 ### 发送数据
 
@@ -158,7 +158,7 @@ void DMA1_Channel4_IRQHandler(void) {
         dma_send_data_cpl_event_handler(&g_tStreamWrite);
     }
 }
-``` 
+```
 
 ## 完整示例
 
