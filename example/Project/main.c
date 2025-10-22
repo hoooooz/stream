@@ -172,3 +172,27 @@ static void time_trigger(uint32_t wTimeOut)
 }
 
 
+void TIM5_IRQHandler(void)
+{
+    uint32_t timesr;
+    uint16_t itstatus = 0x0, itenable = 0x0;
+    TIM_TypeDef *TIMx = TIM5;
+
+    timesr = TIMx->SR;
+    if (timesr & TIM_IT_Update) {
+        TIMx->SR = (uint16_t)~TIM_IT_Update;
+    }
+    
+    itstatus = timesr & TIM_IT_CC1;
+    itenable = TIMx->DIER & TIM_IT_CC1;
+    
+    if ((itstatus != (uint16_t)RESET) && (itenable != (uint16_t)RESET)) {    
+        TIMx->SR = (uint16_t)~TIM_IT_CC1;
+        TIMx->DIER &= (uint16_t)~TIM_IT_CC1;    /* disable CC1 interupt */
+
+       uart_wait_time_out_insert_to_hard_timer_irq_event_handler(&g_tStreamRead) ;
+    }
+
+}
+
+
