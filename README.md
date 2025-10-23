@@ -186,6 +186,10 @@ static stream_write_cfg_t s_tStreamWriteCfg = {
     .fnDmaSendData = uart_dma_data_send    
 };
 
+
+stream_read_t g_tStreamRead;
+stream_write_t g_tStreamWrite;
+
 int main(void) {
     bsp_init();
     
