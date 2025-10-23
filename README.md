@@ -165,6 +165,8 @@ void DMA1_Channel4_IRQHandler(void) {
 以下是一个完整的使用示例,展示了如何初始化和使用这两个模块: 
 
 ```c
+#include "stream.h"
+
 __attribute__((aligned(32)))
 static uint8_t s_chReadBuffer[1024];
 __attribute__((aligned(32)))
