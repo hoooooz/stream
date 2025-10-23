@@ -1,7 +1,7 @@
 
-//#include "..\..\..\common\__common.h"
 #include ".\stream_read.h"
-#include ".\__common.h"
+#include ".\fsm_dequeue.h"
+
 
 extern_fsm_initialiser(dequeue,
     args(stream_read_t *ptStreamRead

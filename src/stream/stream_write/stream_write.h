@@ -13,8 +13,7 @@ typedef union {
 
 
 typedef struct stream_write_t stream_write_t;
-typedef void(dma_start_fn)(mem_blk_t *ptFifoSend);
-typedef void (dma_send_data_fn)(mem_blk_t *ptThis);
+
 
 declare_simple_fsm(enqueue);
 declare_simple_fsm(stream_write_flush);
@@ -61,11 +60,7 @@ struct stream_write_t {
 
 
 
-typedef struct {
-    uint8_t *pchBuffer;
-    uint16_t hwSize;
-    dma_send_data_fn *fnDmaSendData;     
-} stream_write_cfg_t ;
+
 
 
 

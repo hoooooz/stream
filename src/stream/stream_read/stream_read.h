@@ -1,15 +1,12 @@
 #ifndef __STREAM_READ__
 #define __STREAM_READ__
 
-//#include ".\__common.h"
 
 #include "..\..\common\common.h"
 #include "..\stream_cfg.h"
 
 typedef struct stream_read_t stream_read_t;
-typedef void(dma_start_rx_fn)(mem_blk_t *ptFifoSend);
-typedef uint16_t(dma_cnt_get_fn)(void);
-typedef void (time_trigger_fn)(uint32_t wTimeOut);
+
 typedef union {
     mem_blk_t tList;
     uint8_t buffer[sizeof(mem_blk_t) + READ_BUFF_CNT];
@@ -75,14 +72,7 @@ struct stream_read_t {
 
 
 
-typedef struct  {
-    uint8_t *pchBuffer;
-    uint16_t hwSize;
-    uint32_t wTimeOutMs;
-    dma_start_rx_fn *fnDmaStartRx;
-    dma_cnt_get_fn *fnDmaCntGet;
-    time_trigger_fn *fnTimeTrigger;
-} stream_read_cfg_t;
+
 
 
 
