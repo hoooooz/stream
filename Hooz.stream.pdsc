@@ -79,7 +79,7 @@
                 <file category="sourceC"            name="src/stream/stream_read/stream_read.c"/>
 
                 <file category="header"             name="src/stream/stream_write/fsm_enqueue.h"/>
-                <file category="sourceC"            name="src/stream/stream_write/fsm_enqeueu.c"/>
+                <file category="sourceC"            name="src/stream/stream_write/fsm_enqueue.c"/>
                 <file category="header"             name="src/stream/stream_write/stream_write.h"/>
                 <file category="sourceC"            name="src/stream/stream_write/stream_write.c"/>
 

@@ -638,11 +638,6 @@
               <FilePath>..\..\src\stream\stream_cfg.h</FilePath>
             </File>
             <File>
-              <FileName>fsm_deqeueu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\src\stream\stream_read\fsm_deqeueu.c</FilePath>
-            </File>
-            <File>
               <FileName>fsm_dequeue.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\src\stream\stream_read\fsm_dequeue.h</FilePath>
@@ -658,11 +653,6 @@
               <FilePath>..\..\src\stream\stream_read\stream_read.h</FilePath>
             </File>
             <File>
-              <FileName>fsm_enqeueu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\src\stream\stream_write\fsm_enqeueu.c</FilePath>
-            </File>
-            <File>
               <FileName>fsm_enqueue.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\src\stream\stream_write\fsm_enqueue.h</FilePath>
@@ -676,6 +666,16 @@
               <FileName>stream_write.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\src\stream\stream_write\stream_write.h</FilePath>
+            </File>
+            <File>
+              <FileName>fsm_dequeue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\src\stream\stream_read\fsm_dequeue.c</FilePath>
+            </File>
+            <File>
+              <FileName>fsm_enqueue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\src\stream\stream_write\fsm_enqueue.c</FilePath>
             </File>
           </Files>
         </Group>

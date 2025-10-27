@@ -43,6 +43,10 @@ DEFAULT_ARGS=(-c "v")
    stream_read.h
    stream_write.c
    stream_write.h
+   fsm_enqueue.c
+   fsm_enqueue.h
+   fsm_dequeue.h
+   fsm_dequeue.c
    block.c
    block.h
    byte_fifo.c
