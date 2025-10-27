@@ -22,6 +22,7 @@
 
 
     <release date="2025-10-27" version="1.0.0" tag="1.0.0" >
+     Release v1.0.0
       - Initial release of stream
     </release>
     
@@ -71,7 +72,7 @@
               <files>
                 
                 <file category="header"             name="src/stream/stream.h"/>
-                <file category="header"             name="src/stream/stream_cfg.h" attr="config" />
+                <file category="header"             name="src/stream/stream_cfg.h" attr="config" version="1.0.0" />
 
                 <file category="header"             name="src/stream/stream_read/fsm_dequeue.h"/>
                 <file category="sourceC"            name="src/stream/stream_read/fsm_dequeue.c"/>
