@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.7.37" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.37/schema/PACK.xsd">
+  <vendor>Hooz</vendor>
+  <name>stream</name>
+  <description>a module that provide stream write and stream read functions </description>
+  <url>https://github.com/hoooooz/stream</url>
+  <supportContact>https://github.com/GorgonMeducer/perf_counter/issues</supportContact>
+  <license>LICENSE</license>
+  <!-- optional license file -->
+  <!-- 
+  <license>
+  </license>
+  -->
+  
+  <repository type="git">https://github.com/hoooooz/stream.git</repository>
+  
+  <releases>
+    <release version="9.9.9" tag="9.9.9">
+      Active development ...
+    </release>
+
+
+    <release date="2025-10-27" version="1.0.0" tag="1.0.0" >
+      - Initial release of stream
+    </release>
+    
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Stream</keyword>
+    <keyword>Fsm</keyword>
+  
+  </keywords>
+  
+
+  <!-- apis section (optional - for Application Programming Interface descriptions) -->
+  <!-- 
+  <apis>
+  </apis>
+  -->
+
+  <!-- boards section (mandatory for Board Support Packs) -->
+  <!-- 
+  <boards>
+  </boards>
+  -->
+
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <!--
+  <devices>
+  </devices>
+  -->
+
+  <!-- examples section (optional for all Software Packs)-->
+  <!--
+  <examples>
+  </examples>
+  -->
+  
+  <!-- conditions section (optional for all Software Packs)-->
+  <!--
+  <conditions>
+  </conditions>
+  -->
+
+    <components>
+            <component Cclass="Generic" Cversion="1.0.0" Cgroup="stream" >
+              <description>a module that provide stream write and stream read functions</description>
+              <files>
+                
+                <file category="header"             name="src/stream/stream.h"/>
+                <file category="header"             name="src/stream/stream_cfg.h" attr="config" />
+
+                <file category="header"             name="src/stream/stream_read/fsm_dequeue.h"/>
+                <file category="sourceC"            name="src/stream/stream_read/fsm_dequeue.c"/>
+                <file category="header"             name="src/stream/stream_read/stream_read.h"/>
+                <file category="sourceC"            name="src/stream/stream_read/stream_read.c"/>
+
+                <file category="header"             name="src/stream/stream_write/fsm_enqueue.h"/>
+                <file category="sourceC"            name="src/stream/stream_write/fsm_enqeueu.c"/>
+                <file category="header"             name="src/stream/stream_write/stream_write.h"/>
+                <file category="sourceC"            name="src/stream/stream_write/stream_write.c"/>
+
+
+                <file category="header"            name="src/common/common.h" />
+
+                <file category="header"            name="src/common/block/block.h" />
+                <file category="sourceC"           name="src/common/block/block.c" />
+                <file category="header"            name="src/common/byte_fifo/byte_fifo.h" />
+                <file category="sourceC"           name="src/common/byte_fifo/byte_fifo.c" />
+
+
+                <file category="header"            name="src/common/utilities/ooc.h" />
+                <file category="header"            name="src/common/utilities/simple_fsm.h" />
+                <file category="header"            name="src/common/utilities/3rd-party/PLOOC/plooc_class_simple.h" />
+              </files>
+
+
+            </component>
+    </components>
+  
+  <!-- optional taxonomy section for defining new component Class and Group names -->
+
+  <taxonomy>
+    <description Cclass="Generic" Cgroup="stream" doc="documents/Doxygen/html/index.html">a module that provide stream write and stream read functions</description>
+  </taxonomy>
+
+  
+</package>
