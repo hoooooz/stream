@@ -28,32 +28,30 @@ DEFAULT_ARGS=(-c "v")
 # An empty list defaults to all folders next to this script.
 # Default: empty (all folders)
 #
- PACK_DIRS="
-   benchmark
-   documents
-   os
-   template
- "
+ #PACK_DIRS="
+#
+ #"
 
 # Specify file names to be added to pack base directory
 # Default: empty
 #
  PACK_BASE_FILES="
    LICENSE
-   perfc_common.h
-   perf_counter.c
-   perf_counter.h
-   perfc_task_coroutine.c
-   __perfc_task_common.h
-   perfc_task_pt.h
-   perfc_port_default.c
-   perfc_port_default.h
-   perfc_port_pmu.c
-   perfc_port_pmu.h
+   stream.h
+   stream_cfg.h
+   stream_read.c
+   stream_read.h
+   stream_write.c
+   stream_write.h
+   block.c
+   block.h
+   byte_fifo.c
+   byte_fifo.h
+   common.h
+   ooc.h
+   simple_fsm.h
+   plooc_class_simple.h
    README.md
-   systick_wrapper_gcc.S
-   systick_wrapper_gnu.s
-   systick_wrapper_ual.s
  "
 
 # Specify file names to be deleted from pack build directory

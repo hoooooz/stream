@@ -2,9 +2,9 @@ name: Build documentation and pack
 on:
   workflow_dispatch:
   push:
-    branches: [ developing ]
+    branches: [ cmsis-pack ]
   pull_request:
-    branches: [ developing ]
+    branches: [ cmsis-pack ]
   release:
     types: [published]
 jobs:
@@ -21,9 +21,8 @@ jobs:
         run: |
           git fetch --tags --force
 
-      - name: get submodules
-        run: |
-          git submodule update --init
+      - name: Make gen_pack.sh executable
+        run: chmod +x ./gen_pack.sh
 
       - uses: Open-CMSIS-Pack/gen-pack-action@main
         with:
