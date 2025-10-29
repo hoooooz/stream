@@ -54,16 +54,17 @@ extern_simple_fsm(time_out,
 struct stream_read_t {
     bool bBusy ;
     bool bUartIdle;
+    bool bTimerStart;
     mem_blk_fifo_t tMemBlockFifo ;   
     byte_fifo_t tByteFifo ; 
     mem_blk_t *ptByteFifoDmaRx ; 
     mem_blk_t *ptByteFifoEmpty ;     
     uint16_t hwDmaCntUartIdle;
-    uint16_t hwDmaCntTimeOut;
-    uint32_t wTargertTime;
+    uint16_t wSetTime;
+    uint32_t wTimeStamp;
     dma_start_rx_fn *fnDmaStartRx;
     dma_cnt_get_fn *fnDmaCntGet;
-    time_trigger_fn *fnTimeTrigger;
+   // time_trigger_fn *fnTimeTrigger;
     fsm(stream_read_flush) fsmFlushHt ;  
     fsm(dequeue) fsmDequeue ;
     fsm(time_out)  fsmTimeOut ;

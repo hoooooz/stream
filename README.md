@@ -16,16 +16,17 @@
 
 使用 `stream_read_cfg_t` 配置接收参数: 
 
-| 字段            | 类型               | 说明                           |
-| --------------- | ------------------ | ------------------------------ |
-| `pchBuffer`     | `uint8_t*`         | 接收缓冲区内存池指针           |
-| `hwSize`        | `uint16_t`         | 缓冲区总大小                   |
-| `wTimeOutMs`    | `uint32_t`         | 定时器产生中断的设置时间(毫秒) |
-| `fnDmaStartRx`  | `dma_start_rx_fn*` | DMA启动回调函数                |
-| `fnDmaCntGet`   | `dma_cnt_get_fn*`  | 获取DMA剩余计数回调            |
-| `fnTimeTrigger` | `time_trigger_fn*` | 触发硬件定时器回调             |
+| 字段           | 类型               | 说明                           |
+| -------------- | ------------------ | ------------------------------ |
+| `pchBuffer`    | `uint8_t*`         | 接收缓冲区内存池指针           |
+| `hwSize`       | `uint16_t`         | 缓冲区总大小                   |
+| `wTimeOutMs`   | `uint32_t`         | 定时器产生中断的设置时间(毫秒) |
+| `fnDmaStartRx` | `dma_start_rx_fn*` | DMA启动回调函数                |
+| `fnDmaCntGet`  | `dma_cnt_get_fn*`  | 获取DMA剩余计数回调            |
 
-通过一个硬件定时器来生产中断，来读取剩余在fifo 里面的数据，当`fnTimeTrigger`触发时，定时器开始计时， `wTimeOutMs` 毫秒后产生中断，如果中断还没响应又触发`fnTimeTrigger`，定时器重新开始计时，`wTimeOutMs`毫秒后产生中断。
+#### 时间接口
+
+用户需要提供一个 `get_system_ms()` 函数 返回的是ms,来获取时间，将`uart_wait_time_out_insert_to_hard_timer_irq_event_handler(&g_tStreamRead)` 放到一个以1ms 为中断的，硬件定时器中断服务函数中 来读取剩余的数据
 
 #### 初始化函数
 
@@ -39,7 +40,6 @@ stream_read_cfg_t s_tStreamReadCfg = {
     .wTimeOutMs    = 2000,
     .fnDmaStartRx  = uart_dma_data_get,
     .fnDmaCntGet   = get_dma_cnt,
-    .fnTimeTrigger = time_trigger
 };
 
 stream_read_init(&g_tStreamRead, &s_tStreamReadCfg);
@@ -179,7 +179,6 @@ static stream_read_cfg_t s_tStreamReadCfg = {
     .wTimeOutMs    = 2000,
     .fnDmaStartRx  = uart_dma_data_get,
     .fnDmaCntGet   = get_dma_cnt,
-    .fnTimeTrigger = time_trigger
 };
 
 static stream_write_cfg_t s_tStreamWriteCfg = {

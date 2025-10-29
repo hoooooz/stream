@@ -1,0 +1,2 @@
+cmsis pack 说明： 
+https://open-cmsis-pack.github.io/Open-CMSIS-Pack-Spec/main/html/index.html

@@ -20,5 +20,6 @@ extern
     void set_uart_idle(stream_read_t *ptThis);
 extern
     void set_uart_busy(stream_read_t *ptThis);
-
+extern
+    void  set_target_time(stream_read_t *ptThis);
 #endif

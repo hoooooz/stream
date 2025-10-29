@@ -50,12 +50,14 @@ static void set_dma_busy(stream_read_t *ptThis);
 
 
 static bool is_uart_idle(stream_read_t *ptThis);
-//void set_uart_busy(stream_read_t *ptThis);
-//void set_uart_idle(stream_read_t *ptThis);
+
 
 static bool is_really_time_out(stream_read_t *ptThis);
 static uint16_t get_dma_data_cnt(stream_read_t *ptThis);
 static void update_data_cnt(stream_read_t *ptThis,uint16_t hwDataCnt);
+
+static bool is_timer_time_out(stream_read_t *ptThis);
+
 /*============================ LOCAL VARIABLES ===============================*/
 /*============================ IMPLEMENTATION ================================*/
 
@@ -220,8 +222,7 @@ implement_fsm(time_out)
             }
         }
 
-
-        state(FLUSH) {
+        state(FLUSH) {     
             if (fsm_rt_cpl == call_fsm(stream_read_flush,&this.ptStreamRead->fsmTimeOut)) {
                 fsm_cpl();
             }
@@ -272,6 +273,11 @@ static bool is_really_time_out(stream_read_t *ptThis)
     if (NULL == ptThis) {
         return false;
     }
+    if (false == is_timer_time_out(&this)) {
+        
+        return false;
+        
+    }   
     // uart busy
     if (false == is_uart_idle(&this)) {
         return false;
@@ -362,23 +368,38 @@ static void update_data_cnt(stream_read_t *ptThis,uint16_t hwDataCnt)
         
     this.ptByteFifoDmaRx->tSizeInByte = hwDataCnt;
 }
-//static void get_dma_cnt_and_dma_rx_init(stream_read_t *ptThis,mem_blk_t *ptByteFifo,
-//    mem_blk_t **pptByteFifo)
-//{
-//    if (NULL == ptThis
-//        || NULL == ptByteFifo
-//        || NULL == pptByteFifo ) {
-//        return ;
-//    }
-//        
-//    ptByteFifo->tSizeInByte = this.hwDmaSizeTotal;
-//    __IRQ_SAFE {
-//        this.ptByteFifoDmaRx->tSizeInByte = 
-//             this.hwDmaSizeTotal - (*this.fnDmaCntGet)();
-//        (*this.fnDmaStartRx)(ptByteFifo);
-//    }
-//    
-//    block_append(&(this.tMemBlockFifo),*pptByteFifo);
-//    this.ptByteFifoDmaRx = ptByteFifo; 
-//}
+
+void  set_target_time(stream_read_t *ptThis)
+{
+    if  (NULL == ptThis) {
+        return;
+    }
+    
+    uint32_t wTimeTarget = (uint32_t)get_system_ms() + this.wSetTime;
+    
+    this.wTimeStamp  = wTimeTarget;
+    this.bTimerStart = true;
+
+}
+
+static bool is_timer_time_out(stream_read_t *ptThis)
+{
+    bool bRet = false;
+    
+    if (NULL == ptThis) {
+        return false;
+    }
+   
+    if (false == this.bTimerStart) {
+        return false;
+    }
+
+    if (this.wTimeStamp < (uint32_t)get_system_ms()) {
+        this.bTimerStart = false;
+        bRet = true;
+    }
+    
+    return bRet;
+}
+
 
