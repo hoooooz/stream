@@ -43,7 +43,7 @@ void stream_read_init(stream_read_t *ptThis,stream_read_cfg_t *ptCfg )
     this.wSetTime = ptCfg->wTimeOutMs;        
     this.fnDmaStartRx = ptCfg->fnDmaStartRx;
     //this.fnTimeTrigger = ptCfg->fnTimeTrigger;
-    
+    this.fnGetTimeStamp = ptCfg->fnGetTimeStamp;
     this.ptByteFifoDmaRx  = block_new(&(this.tMemBlockFifo));
     (*this.fnDmaStartRx)(this.ptByteFifoDmaRx);
     

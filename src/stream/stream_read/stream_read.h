@@ -64,7 +64,7 @@ struct stream_read_t {
     uint32_t wTimeStamp;
     dma_start_rx_fn *fnDmaStartRx;
     dma_cnt_get_fn *fnDmaCntGet;
-   // time_trigger_fn *fnTimeTrigger;
+    get_timestamp_fn *fnGetTimeStamp;
     fsm(stream_read_flush) fsmFlushHt ;  
     fsm(dequeue) fsmDequeue ;
     fsm(time_out)  fsmTimeOut ;

@@ -16,13 +16,14 @@
 
 使用 `stream_read_cfg_t` 配置接收参数: 
 
-| 字段           | 类型               | 说明                           |
-| -------------- | ------------------ | ------------------------------ |
-| `pchBuffer`    | `uint8_t*`         | 接收缓冲区内存池指针           |
-| `hwSize`       | `uint16_t`         | 缓冲区总大小                   |
-| `wTimeOutMs`   | `uint32_t`         | 定时器产生中断的设置时间(毫秒) |
-| `fnDmaStartRx` | `dma_start_rx_fn*` | DMA启动回调函数                |
-| `fnDmaCntGet`  | `dma_cnt_get_fn*`  | 获取DMA剩余计数回调            |
+| 字段             | 类型               | 说明                           |
+| ---------------- | ------------------ | ------------------------------ |
+| `pchBuffer`      | `uint8_t*`         | 接收缓冲区内存池指针           |
+| `hwSize`         | `uint16_t`         | 缓冲区总大小                   |
+| `wTimeOutMs`     | `uint32_t`         | 定时器产生中断的设置时间(毫秒) |
+| `fnDmaStartRx`   | `dma_start_rx_fn*` | DMA启动回调函数                |
+| `fnDmaCntGet`    | `dma_cnt_get_fn*`  | 获取DMA剩余计数回调            |
+| `fnGetTimeStamp` | `get_timestamp_fn` | 获取系统时间                   |
 
 #### 时间接口
 
@@ -40,6 +41,7 @@ stream_read_cfg_t s_tStreamReadCfg = {
     .wTimeOutMs    = 2000,
     .fnDmaStartRx  = uart_dma_data_get,
     .fnDmaCntGet   = get_dma_cnt,
+    .fnGetTimeStamp= get_system_ms
 };
 
 stream_read_init(&g_tStreamRead, &s_tStreamReadCfg);
@@ -179,6 +181,7 @@ static stream_read_cfg_t s_tStreamReadCfg = {
     .wTimeOutMs    = 2000,
     .fnDmaStartRx  = uart_dma_data_get,
     .fnDmaCntGet   = get_dma_cnt,
+    .fnGetTimeStamp= get_system_ms
 };
 
 static stream_write_cfg_t s_tStreamWriteCfg = {

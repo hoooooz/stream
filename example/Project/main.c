@@ -48,6 +48,7 @@ static stream_read_cfg_t s_tStreamReadCfg = {
     .wTimeOutMs    = 2000,
     .fnDmaStartRx  = uart_dma_data_get,
     .fnDmaCntGet   = get_dma_cnt,
+    .fnGetTimeStamp= get_system_ms
     //.fnTimeTrigger = time_trigger
 };
 

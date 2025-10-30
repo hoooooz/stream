@@ -375,7 +375,7 @@ void  set_target_time(stream_read_t *ptThis)
         return;
     }
     
-    uint32_t wTimeTarget = (uint32_t)get_system_ms() + this.wSetTime;
+    uint32_t wTimeTarget = (*this.fnGetTimeStamp)() + this.wSetTime;
     
     this.wTimeStamp  = wTimeTarget;
     this.bTimerStart = true;
@@ -394,7 +394,7 @@ static bool is_timer_time_out(stream_read_t *ptThis)
         return false;
     }
 
-    if (this.wTimeStamp < (uint32_t)get_system_ms()) {
+    if (this.wTimeStamp < (uint32_t)(*this.fnGetTimeStamp)()) {
         this.bTimerStart = false;
         bRet = true;
     }
