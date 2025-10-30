@@ -39,7 +39,7 @@ static void time_trigger(uint32_t wTimeOut);
 __attribute__((aligned(32)))
 static uint8_t s_chReadBuffer[1024];
 __attribute__((aligned(32)))
-static uint8_t s_chWriteBuffer[1024*10];
+static uint8_t s_chWriteBuffer[1024];
 
 
 static stream_read_cfg_t s_tStreamReadCfg = {
@@ -48,8 +48,6 @@ static stream_read_cfg_t s_tStreamReadCfg = {
     .wTimeOutMs    = 2000,
     .fnDmaStartRx  = uart_dma_data_get,
     .fnDmaCntGet   = get_dma_cnt,
-    .fnGetTimeStamp= get_system_ms
-    //.fnTimeTrigger = time_trigger
 };
 
 static stream_write_cfg_t s_tStreamWriteCfg = {
@@ -183,7 +181,6 @@ void TIM5_IRQHandler(void)
     if (timesr & TIM_IT_Update) {
         TIMx->SR = (uint16_t)~TIM_IT_Update;
         uart_wait_time_out_insert_to_hard_timer_irq_event_handler(&g_tStreamRead) ;
-        
     }
     
     itstatus = timesr & TIM_IT_CC1;

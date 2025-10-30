@@ -50,14 +50,14 @@ static void set_dma_busy(stream_read_t *ptThis);
 
 
 static bool is_uart_idle(stream_read_t *ptThis);
-
+//void set_uart_busy(stream_read_t *ptThis);
+//void set_uart_idle(stream_read_t *ptThis);
 
 static bool is_really_time_out(stream_read_t *ptThis);
 static uint16_t get_dma_data_cnt(stream_read_t *ptThis);
 static void update_data_cnt(stream_read_t *ptThis,uint16_t hwDataCnt);
 
 static bool is_timer_time_out(stream_read_t *ptThis);
-
 /*============================ LOCAL VARIABLES ===============================*/
 /*============================ IMPLEMENTATION ================================*/
 
@@ -222,7 +222,8 @@ implement_fsm(time_out)
             }
         }
 
-        state(FLUSH) {     
+
+        state(FLUSH) {
             if (fsm_rt_cpl == call_fsm(stream_read_flush,&this.ptStreamRead->fsmTimeOut)) {
                 fsm_cpl();
             }
@@ -273,12 +274,10 @@ static bool is_really_time_out(stream_read_t *ptThis)
     if (NULL == ptThis) {
         return false;
     }
-    if (false == is_timer_time_out(&this)) {
-        
-        return false;
-        
-    }   
     // uart busy
+    if (false == is_timer_time_out(&this)) {
+        return false;
+    }
     if (false == is_uart_idle(&this)) {
         return false;
     }
@@ -369,13 +368,14 @@ static void update_data_cnt(stream_read_t *ptThis,uint16_t hwDataCnt)
     this.ptByteFifoDmaRx->tSizeInByte = hwDataCnt;
 }
 
+
 void  set_target_time(stream_read_t *ptThis)
 {
     if  (NULL == ptThis) {
         return;
     }
     
-    uint32_t wTimeTarget = (*this.fnGetTimeStamp)() + this.wSetTime;
+    uint32_t wTimeTarget = get_system_ms() + this.wSetTime;
     
     this.wTimeStamp  = wTimeTarget;
     this.bTimerStart = true;
@@ -394,12 +394,14 @@ static bool is_timer_time_out(stream_read_t *ptThis)
         return false;
     }
 
-    if (this.wTimeStamp < (uint32_t)(*this.fnGetTimeStamp)()) {
+    if (this.wTimeStamp < get_system_ms()) {
         this.bTimerStart = false;
         bRet = true;
     }
     
     return bRet;
 }
+
+
 
 

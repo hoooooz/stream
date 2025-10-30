@@ -23,11 +23,9 @@
 | `wTimeOutMs`     | `uint32_t`         | 定时器产生中断的设置时间(毫秒) |
 | `fnDmaStartRx`   | `dma_start_rx_fn*` | DMA启动回调函数                |
 | `fnDmaCntGet`    | `dma_cnt_get_fn*`  | 获取DMA剩余计数回调            |
-| `fnGetTimeStamp` | `get_timestamp_fn` | 获取系统时间                   |
+#### 时间
 
-#### 时间接口
-
-用户需要提供一个 `get_system_ms()` 函数 返回的是ms,来获取时间，将`uart_wait_time_out_insert_to_hard_timer_irq_event_handler(&g_tStreamRead)` 放到一个以1ms 为中断的，硬件定时器中断服务函数中 来读取剩余的数据
+用户需要提供一个 `get_system_ms()` 返回的是`ms` `将uart_wait_time_out_insert_to_hard_timer_irq_event_handler(&g_tStreamRead)`放入定时器中断，取回剩余数据
 
 #### 初始化函数
 
@@ -41,7 +39,6 @@ stream_read_cfg_t s_tStreamReadCfg = {
     .wTimeOutMs    = 2000,
     .fnDmaStartRx  = uart_dma_data_get,
     .fnDmaCntGet   = get_dma_cnt,
-    .fnGetTimeStamp= get_system_ms
 };
 
 stream_read_init(&g_tStreamRead, &s_tStreamReadCfg);
@@ -181,7 +178,6 @@ static stream_read_cfg_t s_tStreamReadCfg = {
     .wTimeOutMs    = 2000,
     .fnDmaStartRx  = uart_dma_data_get,
     .fnDmaCntGet   = get_dma_cnt,
-    .fnGetTimeStamp= get_system_ms
 };
 
 static stream_write_cfg_t s_tStreamWriteCfg = {

@@ -725,11 +725,6 @@
           <targetInfo name="Target 1" versionMatchMode="fixed"/>
         </targetInfos>
       </package>
-      <package name="MicroBoot" schemaVersion="1.7.28" url="https://github.com/Aladdin-Wang/MicroBoot/" vendor="kk" version="0.9.7">
-        <targetInfos>
-          <targetInfo name="Target 1" versionMatchMode="fixed"/>
-        </targetInfos>
-      </package>
     </packages>
     <apis>
       <api Capiversion="1.1.0" Cclass="CMSIS-Compiler" Cgroup="STDOUT" condition="CortexDevice" exclusive="1">
@@ -779,24 +774,6 @@
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
-      </file>
-      <file attr="config" category="header" name="template\user_app_cfg.h" version="0.9.6">
-        <instance index="0" removed="1">RTE\MicroBoot\user_app_cfg.h</instance>
-        <component Cclass="MicroBoot" Cgroup="components" Csub="ymodem" Cvendor="kk" Cversion="0.9.6" condition="ymodem"/>
-        <package name="MicroBoot" schemaVersion="1.7.28" url="https://github.com/Aladdin-Wang/MicroBoot/" vendor="kk" version="0.9.7"/>
-        <targetInfos/>
-      </file>
-      <file attr="config" category="sourceC" name="example\ymodem\ymodem_ota.c" version="0.9.6">
-        <instance index="0" removed="1">RTE\MicroBoot\ymodem_ota.c</instance>
-        <component Cclass="MicroBoot" Cgroup="example" Csub="ymodem_ota" Cvendor="kk" Cversion="0.9.6" condition="ymodem_ota"/>
-        <package name="MicroBoot" schemaVersion="1.7.28" url="https://github.com/Aladdin-Wang/MicroBoot/" vendor="kk" version="0.9.7"/>
-        <targetInfos/>
-      </file>
-      <file attr="config" category="header" name="example\ymodem\ymodem_ota.h" version="0.9.6">
-        <instance index="0" removed="1">RTE\MicroBoot\ymodem_ota.h</instance>
-        <component Cclass="MicroBoot" Cgroup="example" Csub="ymodem_ota" Cvendor="kk" Cversion="0.9.6" condition="ymodem_ota"/>
-        <package name="MicroBoot" schemaVersion="1.7.28" url="https://github.com/Aladdin-Wang/MicroBoot/" vendor="kk" version="0.9.7"/>
-        <targetInfos/>
       </file>
       <file attr="config" category="sourceC" name="example\ymodem\ymodem_receive.c" version="0.9.6">
         <instance index="0" removed="1">RTE\MicroBoot\ymodem_receive.c</instance>

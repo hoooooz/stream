@@ -60,11 +60,10 @@ struct stream_read_t {
     mem_blk_t *ptByteFifoDmaRx ; 
     mem_blk_t *ptByteFifoEmpty ;     
     uint16_t hwDmaCntUartIdle;
-    uint16_t wSetTime;
+    uint32_t wSetTime;
     uint32_t wTimeStamp;
     dma_start_rx_fn *fnDmaStartRx;
     dma_cnt_get_fn *fnDmaCntGet;
-    get_timestamp_fn *fnGetTimeStamp;
     fsm(stream_read_flush) fsmFlushHt ;  
     fsm(dequeue) fsmDequeue ;
     fsm(time_out)  fsmTimeOut ;

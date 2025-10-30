@@ -42,8 +42,7 @@ void stream_read_init(stream_read_t *ptThis,stream_read_cfg_t *ptCfg )
     this.bTimerStart = false;
     this.wSetTime = ptCfg->wTimeOutMs;        
     this.fnDmaStartRx = ptCfg->fnDmaStartRx;
-    //this.fnTimeTrigger = ptCfg->fnTimeTrigger;
-    this.fnGetTimeStamp = ptCfg->fnGetTimeStamp;
+
     this.ptByteFifoDmaRx  = block_new(&(this.tMemBlockFifo));
     (*this.fnDmaStartRx)(this.ptByteFifoDmaRx);
     
@@ -99,6 +98,7 @@ void uart_idle_insert_to_uart_irq_event_handler(stream_read_t *ptThis)
     set_uart_idle(&this);
     record_current_data_count(&this);
     set_target_time(&this);
+    
 }
 
 void uart_wait_time_out_insert_to_hard_timer_irq_event_handler(stream_read_t *ptThis) 
@@ -108,8 +108,6 @@ void uart_wait_time_out_insert_to_hard_timer_irq_event_handler(stream_read_t *pt
     }
    
     call_fsm(time_out,&(this.fsmTimeOut)); 
-    
-    
 
 }
 

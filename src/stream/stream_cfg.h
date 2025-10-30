@@ -9,7 +9,6 @@
 
 typedef void(dma_start_rx_fn)(mem_blk_t *ptFifoSend);
 typedef uint16_t(dma_cnt_get_fn)(void);
-typedef int64_t (get_timestamp_fn)(void);
 
 typedef void(dma_start_fn)(mem_blk_t *ptFifoSend);
 typedef void (dma_send_data_fn)(mem_blk_t *ptThis);
@@ -20,7 +19,6 @@ typedef struct  {
     uint32_t wTimeOutMs;
     dma_start_rx_fn *fnDmaStartRx;
     dma_cnt_get_fn *fnDmaCntGet;
-    get_timestamp_fn *fnGetTimeStamp;
 } stream_read_cfg_t;
 
 typedef struct {
