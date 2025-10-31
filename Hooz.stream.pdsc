@@ -62,12 +62,12 @@
   -->
 
     <components>
-            <component Cclass="Generic" Cversion="1.0.0" Cgroup="stream" >
+            <component Cclass="Generic" Cversion="1.0.1" Cgroup="stream" >
               <description>a module that provide stream write and stream read functions</description>
               <files>
                 
                 <file category="header"             name="src/stream/stream.h"/>
-                <file category="header"             name="src/stream/stream_cfg.h" attr="config" version="1.0.0" />
+                <file category="header"             name="src/stream/stream_cfg.h" attr="config" version="1.0.1" />
 
                 <file category="header"             name="src/stream/stream_read/fsm_dequeue.h"/>
                 <file category="sourceC"            name="src/stream/stream_read/fsm_dequeue.c"/>
